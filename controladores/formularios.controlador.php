@@ -8,7 +8,7 @@ class ControladorFormularios{
         if (isset($_POST["registerName"])){
             /*return $_POST["registerName] ."<br>" .$_POST["registerEmail]. "<br>" ._POST["registerPassword"] . "<br>";*/
 
-            $tabla = "registros_mac_wedding";
+            $tabla = "registros";
 
             $datos = array(
                 "nombre" => $_POST["registerName"],
@@ -25,13 +25,13 @@ class ControladorFormularios{
     static public function ctrSeleccionarRegistros($item, $valor)
     {
         if ($item == null && $valor == null) {
-            $tabla = "registros_mac_wedding";
+            $tabla = "registros";
 
             $respuesta = ModeloFormularios::mdlSeleccionarRegistros($tabla, null, null);
 
             return $respuesta;
         } else {
-            $tabla = "registros_mac_wedding";
+            $tabla = "registros";
 
             $respuesta = ModeloFormularios::mdlSeleccionarRegistros($tabla, $item, $valor);
 
@@ -45,7 +45,7 @@ class ControladorFormularios{
     public function ctrIngreso()
     {
         if (isset($_POST["ingresoEmail"])) {
-            $tabla = "registros_mac_wedding";
+            $tabla = "registros";
             $item = "email";
             $valor = $_POST["ingresoEmail"];
 
@@ -56,7 +56,7 @@ class ControladorFormularios{
 
                     $_SESSION["validarIngreso"] = "ok";
 
-                    echo "Ingreso Exitoso";
+                    echo "Successful Login";
 
                     echo '<script>
                         if (window.history.replaceState){
@@ -64,7 +64,7 @@ class ControladorFormularios{
                         }
                         setTimeout(function(){
                             window.location.href = "index.php?pagina=inicio";
-                        }, 2000); // Redirecciona después de 2 segundos (ajusta el tiempo según tus preferencias)
+                        }, 2000); // Redirecciona después de 2 segundos
                     </script>';
                 } else {
                     echo '<script>
@@ -72,7 +72,7 @@ class ControladorFormularios{
                             window.history.replaceState(null, null, window.location.href);
                         }
                     </script>';
-                    echo '<div class="alert alert-danger">Error al ingresar al sistema</div>';
+                    echo '<div class="alert alert-danger">Error logging into the system</div>';
                 }
             } else {
                 echo '<script>
@@ -80,7 +80,7 @@ class ControladorFormularios{
                         window.history.replaceState(null, null, window.location.href);
                     }
                 </script>';
-                echo '<div class="alert alert-danger">Error en el sistema ';
+                echo '<div class="alert alert-danger">Error in the system ';
             }
         }
 
@@ -96,7 +96,7 @@ class ControladorFormularios{
             } else {
                 $password = $_POST["passwordActual"];
             }
-            $tabla = "registros_mac_wedding";
+            $tabla = "registros";
 
             $datos = array(
                 "id" => $_POST["id"],
@@ -117,7 +117,7 @@ class ControladorFormularios{
     {
         if (isset($_POST["deleteRegistro"])) {
 
-            $tabla = "registros_mac_wedding";
+            $tabla = "registros";
             $valor = $_POST["deleteRegistro"];
 
 
@@ -129,7 +129,7 @@ class ControladorFormularios{
                     window.history.replaceState(null, null, window.location.href);
                 }
                 </script>    ';
-                echo '<div class="alert-success"> El usuario ha sido Eliminado</div>
+                echo '<div class="alert-success">The user has been deleted</div>
                     <script>
                     setTimeout(function(){
                     window.location = "index.php?pagina=inicio";

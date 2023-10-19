@@ -63,7 +63,7 @@
                 }
                 </script>';
 
-            echo '<div class="alert-success"> El usuario ha sido registrado</div>';
+            echo '<div class="alert-success">Unregistered user</div>';
         }
         ?>
         <button type="submit" class="btn btn-primary">Submit</button>

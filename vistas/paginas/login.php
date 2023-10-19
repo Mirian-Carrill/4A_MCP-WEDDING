@@ -39,7 +39,7 @@
         $ingreso = new ControladorFormularios();
         $ingreso->ctrIngreso();
         ?>
-        <button type="submit" class="btn-primary">Ingresar</button>
+        <button type="submit" class="btn-primary">Get into</button>
     </form>
 
 </div>

@@ -1,31 +1,32 @@
-<?php 
+<?php
 
 require_once "conexion.php";
 
 class ModeloFormularios
 {
-    static public function mdlRegistro($tabla,$datos)
+    static public function mdlRegistro($tabla, $datos)
     {
 
-        $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(nombre, email,password);
-        Values (:nombre, :emai, :password)");
+        $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(nombre, email, password)
+        VALUES (:nombre, :email, :password)");
 
-        $stmt->bindParam(":nombre", $datos["nombre"],PDO::PARAM_STR);
-        $stmt->bindParam(":email", $datos["email"],PDO::PARAM_STR);
-        $stmt->bindParam(":password", $datos["pasword"],PDO::PARAM_STR);
+        $stmt->bindParam(":nombre", $datos["nombre"], PDO::PARAM_STR);
+        $stmt->bindParam(":email", $datos["email"], PDO::PARAM_STR);
+        $stmt->bindParam(":password", $datos["password"], PDO::PARAM_STR);
 
-        if ($stmt->execute()) {
+        if ($stmt->execute()){
             return "ok";
-        }else{
-            print_r($stmt->errorInfo());
+        } else {
+            print_r(Conexion::conectar()-> errorInfo());
         }
-        //$stmt->close();
+        
         $stmt = null;
 
     }
 
-     /*
-     * selecionar registros
+
+    /**
+     *  registros
      */
     static public function mdlSeleccionarRegistros($tabla, $item, $valor)
     {
@@ -49,9 +50,30 @@ class ModeloFormularios
 
         $stmt = null;
     }
+    /**
+     * actualizar 
+     */
+    static public function mdlActualizarRegistros($tabla, $datos)
+    {
+        $stmt = Conexion::conectar()->prepare("UPDATE $tabla SET nombre=:nombre, email=:email, password=:password 
+        WHERE id=:id ");
+
+        $stmt->bindParam(":nombre", $datos["nombre"], PDO::PARAM_STR);
+        $stmt->bindParam(":email", $datos["email"], PDO::PARAM_STR);
+        $stmt->bindParam(":password", $datos["password"], PDO::PARAM_STR);
+        $stmt->bindParam(":id", $datos["id"], PDO::PARAM_INT);
+
+        if ($stmt->execute()) {
+            return "ok";
+        } else {
+            print_r($stmt->errorInfo());
+        }
+        //$stmt->close();
+        $stmt = null;
+    }
 
     /**
-     * eliminar registro
+     * eliminar
      */
     static public function mdlEliminarRegistro($tabla, $valor)
     {
@@ -68,4 +90,3 @@ class ModeloFormularios
         $stmt = null;
     }
 }
-?>
